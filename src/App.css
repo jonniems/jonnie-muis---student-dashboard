@@ -1,38 +1,289 @@
-.App {
-  text-align: center;
+/* ------- universal styling ------- */
+* {
+  padding: 0px;
+  margin: 0px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  color: #666;
+  font-family: "Open Sans", "Trebuchet MS", arial, verdana, sans-serif;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 20px;
+  font-style: normal;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.dashboard-container {
+    display: grid;
+    grid-template-columns: 20% auto 20%;
+    grid-template-rows: auto;
+    grid-template-areas: 
+      "he he he"
+      "na ma sb"
+      "fo fo fo";
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Pretty Header */
+header {
+  grid-area: he;
+  border-bottom: 1px solid #ccc;
+}
+
+header img {
+  height: 50px;
+  margin: 10px;
+}
+
+/* Pretty Nav */
+nav {
+  grid-area: na;
+  padding: 20px;
+  background-color: #f3f3f3;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+}
+
+nav ul li {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+nav ul li a {
+  font-size: 18px;
+  text-decoration: none;
+  color: #666;
+}
+
+.studentname-container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.studentname-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.studentname-container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.studentname-container input:checked ~ .checkmark {
+  background-color: #4f8bc9;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.studentname-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.studentname-container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+nav button {
+  width: 100%;
+  background-color: #4f8bc9;
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 5px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+nav button:hover {
+  background-color: #ccc;
+}
+
+/* Pretty Sidebar */
+aside {
+  grid-area: sb;
+  padding: 20px;
+  background-color: #f3f3f3;
+  display: flex;
+  align-items: center;
+  flex-flow: column wrap;
+}
+
+.sort-menu {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  width: -webkit-fill-available;
+}
+
+aside ul {
+  list-style-type: none;
+  font-size: 14px;
+}
+
+aside ul li {
+  cursor: pointer;
+}
+
+.fas {
+  margin-right: 10px;
+  color: #4f8bc9;
+}
+
+.student-bio {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+aside img {
+  width: 70%;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  margin: 20px 0 10px 0;
+}
+
+aside h3 {
+  font-size: 18px;
+  color: #666;
+  padding-bottom: 10px;
+}
+
+aside p {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Pretty Main */
+main {
+  grid-area: ma;
+}
+
+.victory-buttons {
+  display: flex;
+  flex-direction: row;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.victory-buttons button {
+  margin: 20px 10px 0 10px;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.diffiSwitch {
+  background-color: #900C3F;
+  color: #fff;
+}
+
+.satisSwitch {
+  background-color: #FFC300;
+  color: #fff;
+}
+
+.chartSwitch {
+  background-color: #4f8bc9;
+  color: #fff;
+}
+
+.table-scrollbar {
+  position: relative;
+  height: 300px;
+  overflow: auto;
+  margin-bottom: 20px;
+}
+.table-wrapper-scroll-y {
+  display: block;
+}
+
+main table {
+  width: 100%;
+}
+
+main table thead {
+  background-color: #4f8bc9;
+  color: #fff;
+}
+
+main table thead th {
+  width: 20%;
+}
+
+main table thead th:first-child {
+  width: 40%;
+}
+
+main table tbody tr:nth-child(even) {
+  background-color: #f3f3f3;
+}
+
+main table tbody tr th {
+  text-align: left;
+  padding-left: 10px;
+}
+
+main table tbody tr th a {
+  color: #666;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+main table tbody tr td {
+  text-align: center;
+}
+
+footer {
+  grid-area: fo;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
+  border-top: 1px solid #ccc;
+  background-color: #4f8bc9;
+}
+
+footer a {
+  color: #fff;
 }
